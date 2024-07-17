@@ -28,7 +28,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
             width: 70%;
-            height: 30%;
+            height: 10%;
             border: 5px solid rgb(221, 2, 2);
             box-sizing: border-box;
         }
@@ -131,7 +131,7 @@
             }
 
             function onDetected(data) {
-                console.log("Barcode detected and processed : [" + data.codeResult.code + "]", data);
+                alert("Código de barras detectado: " + data.codeResult.code);
             }
 
             document.querySelector('#start-scan').addEventListener('click', function() {
