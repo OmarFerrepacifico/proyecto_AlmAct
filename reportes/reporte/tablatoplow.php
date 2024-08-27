@@ -1,8 +1,7 @@
 <?php
 
 $curl = curl_init();
-$id = isset($_GET['id']) ? $_GET['id'] : '';
-$id = intval($id); // Convertir $id a un entero
+
 
 $url = "http://corpo-fondeport-zkwpvgkhvbc.dynamic-m.com:8181/exsim/servicios/metodo/ARTICULOS/4P9prZ33S7WIy617wu29p076206j61/10/0/$id";
 
