@@ -1,10 +1,3 @@
-<?php 
-	session_start();
-	if(isset($_SESSION['usuario'])){
-		require_once "../clases/Conexion.php";
-	$c=new Conect_MySql();
-		
- ?>
 
 
 <!DOCTYPE html>
