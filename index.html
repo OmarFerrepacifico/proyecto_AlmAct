@@ -1,27 +1,28 @@
+
+
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title></title>
-
-    <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+	<title>inicio</title>
+	
+	<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
- 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
-    <style>
+	<style>
+		<style>
+        .table-container {
+            overflow-x: auto; 
+        }
+        .table {
+            max-width: 100%;
+            width: 100%;
+        }
+   
         table {
             border-collapse: collapse;
             width: 100%;
@@ -110,15 +111,209 @@
 
 }
 
- 
-  #pantalla_chica, #pantalla_grande {
-            display: none;
+/* Estilo para el botón */
+.btn-primary {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-primary {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Estilo para el modal */
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    z-index: 1; /* Asegúrate de que esté por encima del contenido */
+    left: 0;
+    top: 0;
+    width: 60%;
+    height: 60%;
+    overflow: auto; /* Agrega scroll si es necesario */
+    background-color: rgba(0,0,0,0.4); /* Fondo con opacidad */
+}
+
+/* Contenido del modal */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto; /* Ajusta el margen superior e inferior para mayor separación */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 100%; /* Ancho del modal */
+    max-width: 400px; /* Ancho máximo del modal */
+    height: 30vh; /* Altura del modal en relación a la ventana */
+    position: relative;
+    border-radius: 8px; /* Opcional: Bordes redondeados */
+}
+
+/* Ajustes para el contenido del video */
+#video-container {
+    width: 100%;
+    height: 100%;
+}
+
+#barcode-scanner {
+    width: 100%;
+    height: 100%; /* Ajusta la altura del video */
+    background-color: black; /* Fondo negro para el video */
+}
+
+/* El canvas puede ser opcional, ajusta según tus necesidades */
+
+
+/* Botón para cerrar el modal */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+#camera {
+            width: 100%;
+            height: 400px;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid blue;
+            border: 2px solid blue; 
         }
+
+
+         
+       
+        #scanner-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+        }
+        #line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    border-top: 8px dotted red; /* Ajusta el grosor y estilo de la línea */
+    transform: translateY(-50%);
+}
+        #alert {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 30px;
+            background: white;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            z-index: 1000;
+            text-align: center;
+        }
+        #alert-text {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        #alert button {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #approve-button {
+            background-color: #4CAF50;
+            color: white;
+        }
+        #reject-button {
+            background-color: #f44336;
+            color: white;
+        }
+        #approve-button:hover {
+            background-color: #45a049;
+        }
+        #reject-button:hover {
+            background-color: #e53935;
+        }
+        
+
+        
+        
     </style>
 </head>
 
 <body id="page-top">
+<div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="video-container">
+            
+				
+               
+    <div id="camera">
+     
+        <div id="scanner-container"></div>
+        <div id="line"></div>
+    </div>
+    <div id="alert">
+        <p id="alert-text"></p>
+        <div class="row">
+        <button id="approve-button">Aprobar</button>
+        <button id="reject-button">Rechazar</button>
+        </div>
+        <div class="row">
 
+        <a class="btn btn-warning form-control" href="Valida_articulo.php">
+                  
+                  <span>Validar codigo de barras</span></a>
+                  
+        </div>
+    </div>
+    
+  
+
+            </div>
+			
+
+        </div>
+    </div>
+    <div class="container">
+        <div id="carouselExample" class="carousel slide">
+        <div class="carousel-inner">
+            <?php
+            
+                ?>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+        </div>
+    </div>
     <!-- Page Wrapper -->
     <div id="wrapper">
 
@@ -128,7 +323,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 
-                <div class="sidebar-brand-text mx-3">Omar Hidalgo </div>
+                <div class="sidebar-brand-text mx-3"> </div>
             </a>
 
             <!-- Divider -->
@@ -142,7 +337,7 @@
             </li>
 
  <li class="nav-item active">
-                <a class="nav-link" href="valida_art.html">
+                <a class="nav-link" href="Valida_articulo.php">
                   
                     <span>Validar codigo de barras</span></a>
             </li>
@@ -177,10 +372,10 @@
 
         </ul>
         <!-- End of Sidebar -->
-
+	
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
-
+	
             <!-- Main Content -->
             <div id="content">
                 <form>
@@ -211,14 +406,11 @@
 
                 </nav>
                 <!-- End of Topbar -->
-
+			
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <div class="col-xl-12 col-md-12 col-sm-12  col-xs-12  mb-12">
-                       <div id="video-container">
-                                              <video id="barcode-scanner" width="100%" height="400%" playsinline></video>
-                                              <canvas id="barcode-detector"></canvas>
-                                            </div>
+				
                             <div class="card-body">
                               
                                     <div class="container mt-5">
@@ -227,29 +419,56 @@
                                  
                                           
                                             <div class="mt-3">
-                                              <button id="start-scan" class="btn btn-primary">Escanear</button>
+                                              <button id="start-scan" class="btn btn-primary">Escanear con Camara</button>
+											 
                                             </div>
-                                             <label>¿deseas validar con codigo de Microsip?</label>
+                                      
                                             <div class="mt-3">
 
-                                              <div class="switch-button">
-    <!-- Checkbox -->   
+                                            <div class="switch-button">
+    <!-- Checkbox -->   <label>código para mostrar</label>
     <input type="checkbox" name="switch-button" id="switch-label" class="switch-button__checkbox">
     <!-- Botón -->
     <label for="switch-label" class="switch-button__label"></label>
-
+    <label>nombre del articulo</label>
 </div>
                                             </div>
-                                            <div class="mt-3">
+
+
+                                          
+
+                                      <div class="mt-3" id="buscar_nombre"> 
+                                        
+                                        <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar por nombre"
+                                        aria-label="Buscar por codigo" aria-describedby="basic-addon2" id="item_nombre">
+                                        <input type="hidden" class="form-control bg-light border-0 small" placeholder="Buscar por nombre"
+                                        aria-label="Buscar por codigo" aria-describedby="basic-addon2" id="item_nombre_id">
+                                        
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary" type="button" id="busqueda" onclick='btnMinformacion_name();'> 
+                                                    <i class="fas fa-search fa-sm"></i>
+                                                </button>
+                                              </div>
+                                          
+                                        </div>
+                                       
+                                        <ol id="ol_nombre" class="olol">
+                                 
+                                 </ol>
+                                  
+                                </div>
+
+                                            <div class="mt-3" id="buscar_codigo">
                                               
                                                     <div class="input-group">
                                                         <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar"
                                                             aria-label="Search" aria-describedby="basic-addon2" id="item">
                                                         <div class="input-group-append">
-                                                            <button class="btn btn-primary" type="button" id="busqueda">
+                                                            <button class="btn btn-primary" type="button" id="busqueda" onclick='btnMinformacion();'>
                                                                 <i class="fas fa-search fa-sm"></i>
                                                             </button>
-                                                        </div>
+                                                          </div>
                                                     </div>
                                                 
                                               
@@ -318,7 +537,7 @@
                         </div>
 
                         <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="col-xl-2 col-md-4 mb-3">
                             <div class="card border-left-success shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -328,7 +547,7 @@
                                             <div class="h5 mb-0 font-weight-bold text-gray-800" id="almacen_masExistencias"></div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                        
                                         </div>
                                     </div>
                                 </div>
@@ -336,14 +555,17 @@
 
                         </div>
 
-                         <div class="col-xl-3 col-md-6 mb-4">
+
+
+<!---------precios------->
+<div class="col-xl-2 col-md-4 mb-3">
                             <div class="card border-left-success shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                               Precio</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="prec"></div>
+                                              precio mas alto  </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="prec_alt"></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -351,8 +573,28 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </div>
+
+						<div class="col-xl-2 col-md-4 mb-3">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                              precio mas bajo  </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="prec_bajo"></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        
 
                         <!-- Earnings (Monthly) Card Example -->
                        
@@ -364,7 +606,7 @@
                     <div class="row">
 
                         <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
+                        <div class="col-xl-5 col-lg-5">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div
@@ -373,148 +615,17 @@
                                    
                                 </div>
                                 <!-- Card Body -->
-                                <div id="pantalla_chica">
-                                    <div class="container">
-                                        <div class="row" >
-                                            <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 col-xl-12">Existencia
-                                                 
-                                            </div>
-                                               <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 col-xl-12" id="dv_Exist_Fondeport">
-                                                 
-                                            </div>
-                                             <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 col-xl-12">Ubicación   </div>
-                                                    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 col-xl-12">Fondeport   </div>
-                                              <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 col-xl-12">Localización a Detalle</div>
-                                            
-                                        </div>                                   
-
-                                                                     </div>
-                                                                     <br/>
-                                                                        <div class="container" style="background-color:#F3F3F3; ">
-                                        <div class="row">
-                                            <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 col-xl-12">Existencia
-                                                 
-                                            </div>
-                                            <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 col-xl-12" id="dv_Exist_Tlaquepaque">
-                                                 
-                                            </div>
-                                             <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 col-xl-12">Ubicación
-
-                                                    
-                                             </div>
-                                              <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 col-xl-12">Tlaquepaque   </div>
-                                              <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 col-xl-12">Localización a Detalle</div>
-                                            
-                                        </div>                                   
-
-                                                                     </div>
-                                                                     <br/>
-                                                                        <div class="container">
-                                        <div class="row">
-                                            <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 col-xl-12">Existencia
-                                                 
-                                            </div>
-                                            <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 col-xl-12" id="dv_Exist_lH">
-                                                 
-                                            </div>
-                                             <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 col-xl-12">Ubicación
-
-                                                    
-                                             </div>
-                                              <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 col-xl-12">La Huerta   </div>
-                                              <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 col-xl-12">Localización a Detalle</div>
-                                            
-                                        </div>                                   
-
-                                                                     </div>
-                                                                     <br/>
-                                                                        <div class="container" style="background-color:#F3F3F3; ">
-                                        <div class="row">
-                                            <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 col-xl-12">Existencia
-                                                 
-                                            </div>
-                                             <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 col-xl-12" id="dv_Exist_Vp">
-                                                 
-                                            </div>
-                                             <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 col-xl-12">Ubicación
-
-                                                    
-                                             </div>
-                                              <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 col-xl-12">Villa Purificación  </div>
-                                              <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 col-xl-12">Localización a Detalle</div>
-                                            
-                                        </div>                                   
-
-                                                                     </div>
-                                                                     <br/>
-                                                                        <div class="container">
-                                        <div class="row">
-                                            <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 col-xl-12">Existencia
-                                                 
-                                            </div>
-                                            <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 col-xl-12" id="dv_Exist_Cantamar">
-                                                 
-                                            </div>
-                                             <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 col-xl-12">Ubicación
-
-                                                    
-                                             </div>
-                                               <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 col-xl-12">Cantamar </div>
-                                              <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 col-xl-12">Localización a Detalle</div>
-                                            
-                                        </div>                                   
-
-                                                                     </div>
-                                                                     <br/>
-                                                                        <div class="container" style="background-color:#F3F3F3; ">
-                                        <div class="row">
-                                            <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 col-xl-12">Existencia
-                                                 
-                                            </div>
-                                              <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 col-xl-12" id="dv_Exist_Mayoreo">
-                                                 
-                                            </div>
-                                             <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 col-xl-12">Ubicación
-
-                                                    
-                                             </div>
-                                                  <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 col-xl-12">Mayoreo </div>
-                                              <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 col-xl-12">Localización a Detalle</div>
-                                            
-                                        </div>                                   
-
-                                                                     </div>
-                                                                     <br/>
-                                                                        <div class="container">
-                                        <div class="row">
-                                            <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 col-xl-12">Existencia
-                                                 
-                                            </div>
-                                              <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 col-xl-12" id="dv_Exist_Melaque">
-                                                 
-                                            </div>
-                                             <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 col-xl-12">Ubicación
-
-                                                    
-                                             </div>
-                                             <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 col-xl-12">Melaque </div>
-                                              <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 col-xl-12">Localización a Detalle</div>
-                                            
-                                        </div>                                   
-
-                                                                     </div>
-                                                                     <br/>
-                                                                  
-                                </div>
+                            
                                 <div id="pantalla_grande">
                                     <div class="container">
                                         <div class="row" >
                                         <table  class="table table-striped ">
                                             <thead>
                                                 <tr>
-                                                    <th>Existencia</th>
+                                                   
                                                     <th>Ubicación</th>
-                                                    <th>Localización a Detalle</th>
+													<th>Existencia</th>
+                                                 
                                                   
                                                 </tr>
                                             </thead>
@@ -531,12 +642,12 @@
 
 
                         <!-- Pie Chart -->
-                        <div class="col-xl-4 col-lg-5">
+                        <div class="col-xl-7 col-lg-7">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Mejor ubicacion</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Lista de precios</h6>
                                     <div class="dropdown no-arrow">
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -544,19 +655,37 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                             aria-labelledby="dropdownMenuLink">
+											
                                         
                                         </div>
                                     </div>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    <div class="chart-pie pt-4 pb-2"  id="Mejor_ubicacion">
-                                      
+                                    <div >
+									<div class="table-container">
+									<table  class="table table-striped " id="resultsTable" class="display nowrap table table-sm table-bordered table-hover table-responsive-sm table table-striped ">
+                                            <thead>
+                                                <tr>
+                                                   
+                                                    <th>Ubicación</th>
+													<th>Precio</th>
+                                                    
+                                                  
+                                                </tr>
+                                            </thead>
+                                            <tbody id="cuerpo_tabla_precio">
+                                                
+                                             
+                                            </tbody>
+                                        </table>
+										</div>
                                     </div>
                               
                                 </div>
                             </div>
                         </div>
+                      <input type="text" id="busquedas">
                     </div>
 
                     <!-- Content Row -->
@@ -590,981 +719,743 @@
         <!-- End of Content Wrapper -->
 
     </div>
-    <!-- End of Page Wrapper -->
 
-    <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Bootstrap core JavaScript-->
+   
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
+ 
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
+
     <script src="vendor/chart.js/Chart.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
 
     <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/quagga"></script>
-    <script src="script.js"></script>
-
+  
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  
+      <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+        <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css">
+        <script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
+        <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.53/build/vfs_fonts.js"></script>
+        <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.flash.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<link rel="stylesheet" href="https://cdn.datatables.net/1.13.3/css/jquery.dataTables.min.css">
+    <!-- DataTables Buttons CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script>
+    <!-- DataTables Buttons JS -->
+    <script src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
+    <!-- Buttons Flash JS -->
+    <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.flash.min.js"></script>
+    <!-- JSZip for Excel export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <!-- PDFMake for PDF export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <!-- Buttons HTML5 export -->
+    <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
+    <!-- Buttons print -->
+    <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.print.min.js"></script>
      <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            Quagga.init({
-                inputStream: {
-                    name: "Live",
-                    type: "LiveStream",
-                    target: document.querySelector('#barcode-scanner')    // Or '#yourElement' (optional)
-                },
-                decoder: {
-                    readers: ["code_128_reader", "ean_reader", "ean_8_reader", "code_39_reader", "code_39_vin_reader", "codabar_reader", "upc_reader", "upc_e_reader", "i2of5_reader"]
-                }
-            }, function(err) {
-                if (err) {
-                    console.log(err);
-                    return;
-                }
-                console.log("Initialization finished. Ready to start");
-                Quagga.start();
-            });
 
-            Quagga.onDetected(function(data) {
-                console.log("Barcode detected and processed : [" + data.codeResult.code + "]", data);
-            });
-        });
-    </script>
-    <script>
+const modal = document.getElementById("modal");
+const btn = document.getElementById("start-scan");
+const span = document.getElementsByClassName("close")[0];
 
-        $(document).ready(function() {
-function getBootstrapBreakpoint() {
-            const width = window.innerWidth;
 
-            if (width < 576) {
-                return 'xs'; // Extra small devices (portrait phones, less than 576px)
-            } else if (width >= 576 && width < 768) {
-                return 'sm'; // Small devices (landscape phones, 576px and up)
-            } else if (width >= 768 && width < 992) {
-                return 'md'; // Medium devices (tablets, 768px and up)
-            } else if (width >= 992 && width < 1200) {
-                return 'lg'; // Large devices (desktops, 992px and up)
-            } else {
-                return 'xl'; // Extra large devices (large desktops, 1200px and up)
+
+let isCodeDetected = false;  // Bandera para verificar si ya se detectó un código
+
+const beepSound = new Audio('beep.mp3'); 
+// Cuando el usuario haga clic en el botón, abre el modal
+btn.onclick = function() {
+    modal.style.display = "block";
+
+    if (!isCodeDetected) {
+        // Configuración del flujo de entrada
+        let constraints = {
+            facingMode: 'environment',
+            width: { ideal: 1280, min: 640 },
+            height: { ideal: 720, min: 480 }
+        };
+
+        // Inicializa Quagga
+        Quagga.init({
+            inputStream: {
+                type: 'LiveStream',
+                constraints: constraints,
+                target: document.querySelector('#scanner-container')
+            },
+            decoder: {
+                readers: [
+                    'upc_reader', 
+                    'code_128_reader', 
+                    'ean_reader', 
+                    'ean_8_reader', 
+                    'code_39_reader', 
+                    'codabar_reader', 
+                    'i2of5_reader'
+                ]
+            },
+            locator: {
+                patchSize: 'large',
+                halfSample: true
             }
-        }
-
-        function updateDivVisibility() {
-            const breakpoint = getBootstrapBreakpoint();
-            const divChica = document.getElementById('pantalla_chica');
-            const divGrande = document.getElementById('pantalla_grande');
-
-            if (breakpoint === 'xs' || breakpoint === 'sm') {
-                divChica.style.display = 'block';
-                divGrande.style.display = 'none';
-            } else {
-                divChica.style.display = 'none';
-                divGrande.style.display = 'block';
+        }, function(err) {
+            if (err) {
+                console.log(err);
+                return;
             }
-        }
-
-        // Actualiza la visibilidad de los divs al cargar la página
-        updateDivVisibility();
-
-        // Actualiza la visibilidad de los divs cuando se redimensiona la ventana
-        window.addEventListener('resize', function() {
-            updateDivVisibility();
+            Quagga.start();
         });
-            // Seleccionar el botón por su id
-            var botonEntrar = $("#busqueda");
-            var item = $("#item");
-            var articulo = $("#articulo");
-            var existencias = $("#existencias");
-            var almacen_masExistencias = $("#almacen_masExistencias");
-            var Mejor_ubicacion = $("#Mejor_ubicacion");
+
+        // Manejo de la detección del código
+        Quagga.onDetected(function(data) {
+            if (!isCodeDetected) {
+                isCodeDetected = true;
+                Quagga.stop();
+                beepSound.play();
+
+                document.getElementById('alert-text').textContent = 'Código detectado: ' + data.codeResult.code;
+                document.getElementById('alert').style.display = 'block';
+
+                document.getElementById('approve-button').addEventListener('click', function() {
+                    document.getElementById('item').value = data.codeResult.code;
+                    document.getElementById('alert').style.display = 'none';
+                    document.getElementById('modal').style.display = 'none';
+                    isCodeDetected = false;
+                    setTimeout(() => Quagga.start(), 1000);
+                });
+
+                document.getElementById('reject-button').addEventListener('click', function() {
+                    document.getElementById('alert').style.display = 'none';
+                    isCodeDetected = false;
+                    modal.style.display = "none";
+                    setTimeout(() => Quagga.start(), 1000);
+                });
+            }
+        });
+    }
+}
+
+
+// Cuando el usuario haga clic en el botón de cerrar (x), cierra el modal
+span.onclick = function() {
+    modal.style.display = "none";
+    
+}
+
+// Cuando el usuario haga clic fuera del contenido del modal, cierra el modal
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+       
    
-      
- document.getElementById('switch-label').addEventListener('change', function(event) {
+
+const div_nombre = document.getElementById('buscar_nombre');
+            const div_codigo = document.getElementById('buscar_codigo');
+            div_nombre.style.display = 'none';
+document.getElementById('switch-label').addEventListener('change', function(event) {
     // Obtén el valor del checkbox
     var isChecked = event.target.checked;
     
     // Puedes hacer lo que necesites con el valor
-    console.log("El checkbox está " + (isChecked ? "marcado" : "desmarcado"));
+    console.log(isChecked + (isChecked ? "marcado" : "desmarcado"));
+
+if(isChecked==true){
+    const div_codigo = document.getElementById('buscar_codigo');
+    const div_nombre = document.getElementById('buscar_nombre');
+    div_codigo.style.display = 'none';
+    div_nombre.style.display = 'block';
+}
+else if(isChecked==false){
+    const div_codigo = document.getElementById('buscar_codigo');
+    const div_nombre = document.getElementById('buscar_nombre');
+    div_nombre.style.display = 'none';
+    div_codigo.style.display = 'block';
+}
+
+   
+    /*const div_nombre = document.getElementById('buscar_nombre');
+            const div_codigo = document.getElementById('buscar_codigo');
+            div_nombre.style.display = 'none';*/
 });
   
-            // Agregar un evento al hacer clic en el botón
-            botonEntrar.on("click", function() {
-                var texto = item.val();
-           
-            
-                // Hacer lo que quieras con el texto, por ejemplo, imprimirlo en la consola
-           
-////////cuerpo
-                if (texto === "12885") {
-var dv_Exist_Fondeport =364.936;
-var dv_Exist_Tlaquepaque =120.42;
-var dv_Exist_lH =17.3997;
-var dv_Exist_Vp =0;
-var dv_Exist_Cantamar =0;
-var dv_Exist_Mayoreo =0;
-var dv_Exist_Melaque  =83.916;
-var articulo ="PLACA ACERO 1/2 A36 ROLLO 6 X 20 AL CORTE";
-var existencias = parseFloat(dv_Exist_Fondeport)+
-parseFloat(dv_Exist_Tlaquepaque)+
-parseFloat(dv_Exist_lH)+
-parseFloat(dv_Exist_Vp)+
-parseFloat(dv_Exist_Cantamar)+
-parseFloat(dv_Exist_Mayoreo)+
-parseFloat(dv_Exist_Melaque);
-var almacen_masExistencias ="Fondeport";
-var prec =25.85;
-var Mejor_ubicacion ="Fondeport";
 
-                   $("#dv_Exist_Fondeport").text(dv_Exist_Fondeport);
- $("#dv_Exist_Tlaquepaque").text(dv_Exist_Tlaquepaque);
- $("#dv_Exist_lH").text(dv_Exist_lH);
- $("#dv_Exist_Vp").text(dv_Exist_Vp);
- $("#dv_Exist_Cantamar").text(dv_Exist_Cantamar);
- $("#dv_Exist_Mayoreo").text(dv_Exist_Mayoreo);
- $("#dv_Exist_Melaque").text(dv_Exist_Melaque);
-
-$("#articulo").text(articulo);
-$("#existencias").text(existencias);
-$("#almacen_masExistencias").text(almacen_masExistencias);
-$("#prec").text(prec);
-$("#Mejor_ubicacion").text(Mejor_ubicacion);
-const data = [
-    { id: dv_Exist_Fondeport, nombre: 'Fondeport', ubicacion: '' },
-    { id: dv_Exist_Tlaquepaque, nombre: 'Tlaquepaque', ubicacion: '' },
-    { id: dv_Exist_lH, nombre: 'La Huerta', ubicacion: '' },
-    { id: dv_Exist_Vp, nombre: 'Villa Purificación', ubicacion: '' },
-      { id: dv_Exist_Cantamar, nombre: 'Cantamar', ubicacion: '' },
-        { id: dv_Exist_Mayoreo, nombre: 'Mayoreo', ubicacion: '' },
-          { id: dv_Exist_Melaque, nombre: 'Melaque', ubicacion: '' }
-];
-
-
- const tbody = document.getElementById('cuerpo_tabla');
-    
-    // Limpiar el contenido existente
-    tbody.innerHTML = '';
-
-    // Agregar las nuevas filas
-    data.forEach(item => {
-        const tr = document.createElement('tr');
-        
-        // Crear y agregar celdas
-        const tdId = document.createElement('td');
-        tdId.textContent = item.id;
-        tr.appendChild(tdId);
-        
-        const tdNombre = document.createElement('td');
-        tdNombre.textContent = item.nombre;
-        tr.appendChild(tdNombre);
-        
-        const tdUbicacion = document.createElement('td');
-        tdUbicacion.textContent = item.ubicacion;
-        tr.appendChild(tdUbicacion);
-
-      
-        
-        // Agregar la fila al cuerpo de la tabla
-        tbody.appendChild(tr);
-    });
-    
-                } 
-
-
-                else if (texto === "22756") {
-var dv_Exist_Fondeport =288;
-var dv_Exist_Tlaquepaque =11;
-var dv_Exist_lH =0;
-var dv_Exist_Vp =731;
-var dv_Exist_Cantamar =0;
-var dv_Exist_Mayoreo =0;
-var dv_Exist_Melaque  =404;
-var articulo ="CEMENTO GRIS CRUZ AZUL SACO 50 KG";
-var existencias = parseFloat(dv_Exist_Fondeport)+
-parseFloat(dv_Exist_Tlaquepaque)+
-parseFloat(dv_Exist_lH)+
-parseFloat(dv_Exist_Vp)+
-parseFloat(dv_Exist_Cantamar)+
-parseFloat(dv_Exist_Mayoreo)+
-parseFloat(dv_Exist_Melaque);
-var almacen_masExistencias ="Villa Purificación";
-var prec =207.6;
-var Mejor_ubicacion ="Fondeport";
-
-                   $("#dv_Exist_Fondeport").text(dv_Exist_Fondeport);
- $("#dv_Exist_Tlaquepaque").text(dv_Exist_Tlaquepaque);
- $("#dv_Exist_lH").text(dv_Exist_lH);
- $("#dv_Exist_Vp").text(dv_Exist_Vp);
- $("#dv_Exist_Cantamar").text(dv_Exist_Cantamar);
- $("#dv_Exist_Mayoreo").text(dv_Exist_Mayoreo);
- $("#dv_Exist_Melaque").text(dv_Exist_Melaque);
-
-$("#articulo").text(articulo);
-$("#existencias").text(existencias);
-$("#almacen_masExistencias").text(almacen_masExistencias);
-$("#prec").text(prec);
-$("#Mejor_ubicacion").text(Mejor_ubicacion);
-const data = [
-    { id: dv_Exist_Fondeport, nombre: 'Fondeport', ubicacion: '' },
-    { id: dv_Exist_Tlaquepaque, nombre: 'Tlaquepaque', ubicacion: '' },
-    { id: dv_Exist_lH, nombre: 'La Huerta', ubicacion: '' },
-    { id: dv_Exist_Vp, nombre: 'Villa Purificación', ubicacion: '' },
-      { id: dv_Exist_Cantamar, nombre: 'Cantamar', ubicacion: '' },
-        { id: dv_Exist_Mayoreo, nombre: 'Mayoreo', ubicacion: '' },
-          { id: dv_Exist_Melaque, nombre: 'Melaque', ubicacion: '' }
-];
-
-
- const tbody = document.getElementById('cuerpo_tabla');
-    
-    // Limpiar el contenido existente
-    tbody.innerHTML = '';
-
-    // Agregar las nuevas filas
-    data.forEach(item => {
-        const tr = document.createElement('tr');
-        
-        // Crear y agregar celdas
-        const tdId = document.createElement('td');
-        tdId.textContent = item.id;
-        tr.appendChild(tdId);
-        
-        const tdNombre = document.createElement('td');
-        tdNombre.textContent = item.nombre;
-        tr.appendChild(tdNombre);
-        
-        const tdUbicacion = document.createElement('td');
-        tdUbicacion.textContent = item.ubicacion;
-        tr.appendChild(tdUbicacion);
-
-      
-        
-        // Agregar la fila al cuerpo de la tabla
-        tbody.appendChild(tr);
-    });
-    
-                } 
-
-
-
-                else if (texto === "11343") {
-var dv_Exist_Fondeport =197;
-var dv_Exist_Tlaquepaque =224;
-var dv_Exist_lH =16;
-var dv_Exist_Vp =731;
-var dv_Exist_Cantamar =0;
-var dv_Exist_Mayoreo =15;
-var dv_Exist_Melaque  =283;
-var articulo ="TEJA SAN MIGUEL TERRACOTA";
-var existencias = parseFloat(dv_Exist_Fondeport)+
-parseFloat(dv_Exist_Tlaquepaque)+
-parseFloat(dv_Exist_lH)+
-parseFloat(dv_Exist_Vp)+
-parseFloat(dv_Exist_Cantamar)+
-parseFloat(dv_Exist_Mayoreo)+
-parseFloat(dv_Exist_Melaque);
-var almacen_masExistencias ="Villa Purificación";
-var prec =303.4;
-var Mejor_ubicacion ="Fondeport";
-
-                   $("#dv_Exist_Fondeport").text(dv_Exist_Fondeport);
- $("#dv_Exist_Tlaquepaque").text(dv_Exist_Tlaquepaque);
- $("#dv_Exist_lH").text(dv_Exist_lH);
- $("#dv_Exist_Vp").text(dv_Exist_Vp);
- $("#dv_Exist_Cantamar").text(dv_Exist_Cantamar);
- $("#dv_Exist_Mayoreo").text(dv_Exist_Mayoreo);
- $("#dv_Exist_Melaque").text(dv_Exist_Melaque);
-
-$("#articulo").text(articulo);
-$("#existencias").text(existencias);
-$("#almacen_masExistencias").text(almacen_masExistencias);
-$("#prec").text(prec);
-$("#Mejor_ubicacion").text(Mejor_ubicacion);
-const data = [
-    { id: dv_Exist_Fondeport, nombre: 'Fondeport', ubicacion: '' },
-    { id: dv_Exist_Tlaquepaque, nombre: 'Tlaquepaque', ubicacion: '' },
-    { id: dv_Exist_lH, nombre: 'La Huerta', ubicacion: '' },
-    { id: dv_Exist_Vp, nombre: 'Villa Purificación', ubicacion: '' },
-      { id: dv_Exist_Cantamar, nombre: 'Cantamar', ubicacion: '' },
-        { id: dv_Exist_Mayoreo, nombre: 'Mayoreo', ubicacion: '' },
-          { id: dv_Exist_Melaque, nombre: 'Melaque', ubicacion: '' }
-];
-
-
- const tbody = document.getElementById('cuerpo_tabla');
-    
-    // Limpiar el contenido existente
-    tbody.innerHTML = '';
-
-    // Agregar las nuevas filas
-    data.forEach(item => {
-        const tr = document.createElement('tr');
-        
-        // Crear y agregar celdas
-        const tdId = document.createElement('td');
-        tdId.textContent = item.id;
-        tr.appendChild(tdId);
-        
-        const tdNombre = document.createElement('td');
-        tdNombre.textContent = item.nombre;
-        tr.appendChild(tdNombre);
-        
-        const tdUbicacion = document.createElement('td');
-        tdUbicacion.textContent = item.ubicacion;
-        tr.appendChild(tdUbicacion);
-
-      
-        
-        // Agregar la fila al cuerpo de la tabla
-        tbody.appendChild(tr);
-    });
-    
-                } 
-
-
-
-
-                else if (texto === "8004") {
-var dv_Exist_Fondeport =12.37;
-var dv_Exist_Tlaquepaque =210;
-var dv_Exist_lH =475.909;
-var dv_Exist_Vp =120.7;
-var dv_Exist_Cantamar =19.7999;
-var dv_Exist_Mayoreo =0;
-var dv_Exist_Melaque  =288;
-var articulo ="ESTRIBOS DE ALAMBRON 10 X 25 KG";
-var existencias = parseFloat(dv_Exist_Fondeport)+
-parseFloat(dv_Exist_Tlaquepaque)+
-parseFloat(dv_Exist_lH)+
-parseFloat(dv_Exist_Vp)+
-parseFloat(dv_Exist_Cantamar)+
-parseFloat(dv_Exist_Mayoreo)+
-parseFloat(dv_Exist_Melaque);
-var almacen_masExistencias ="La Huerta";
-var prec =24.5;
-var Mejor_ubicacion ="Fondeport";
-
-                   $("#dv_Exist_Fondeport").text(dv_Exist_Fondeport);
- $("#dv_Exist_Tlaquepaque").text(dv_Exist_Tlaquepaque);
- $("#dv_Exist_lH").text(dv_Exist_lH);
- $("#dv_Exist_Vp").text(dv_Exist_Vp);
- $("#dv_Exist_Cantamar").text(dv_Exist_Cantamar);
- $("#dv_Exist_Mayoreo").text(dv_Exist_Mayoreo);
- $("#dv_Exist_Melaque").text(dv_Exist_Melaque);
-
-$("#articulo").text(articulo);
-$("#existencias").text(existencias);
-$("#almacen_masExistencias").text(almacen_masExistencias);
-$("#prec").text(prec);
-$("#Mejor_ubicacion").text(Mejor_ubicacion);
-const data = [
-    { id: dv_Exist_Fondeport, nombre: 'Fondeport', ubicacion: '' },
-    { id: dv_Exist_Tlaquepaque, nombre: 'Tlaquepaque', ubicacion: '' },
-    { id: dv_Exist_lH, nombre: 'La Huerta', ubicacion: '' },
-    { id: dv_Exist_Vp, nombre: 'Villa Purificación', ubicacion: '' },
-      { id: dv_Exist_Cantamar, nombre: 'Cantamar', ubicacion: '' },
-        { id: dv_Exist_Mayoreo, nombre: 'Mayoreo', ubicacion: '' },
-          { id: dv_Exist_Melaque, nombre: 'Melaque', ubicacion: '' }
-];
-
-
- const tbody = document.getElementById('cuerpo_tabla');
-    
-    // Limpiar el contenido existente
-    tbody.innerHTML = '';
-
-    // Agregar las nuevas filas
-    data.forEach(item => {
-        const tr = document.createElement('tr');
-        
-        // Crear y agregar celdas
-        const tdId = document.createElement('td');
-        tdId.textContent = item.id;
-        tr.appendChild(tdId);
-        
-        const tdNombre = document.createElement('td');
-        tdNombre.textContent = item.nombre;
-        tr.appendChild(tdNombre);
-        
-        const tdUbicacion = document.createElement('td');
-        tdUbicacion.textContent = item.ubicacion;
-        tr.appendChild(tdUbicacion);
-
-      
-        
-        // Agregar la fila al cuerpo de la tabla
-        tbody.appendChild(tr);
-    });
-    
-                } 
-
-
-                else if (texto === "5426") {
-var dv_Exist_Fondeport =11.75498;
-var dv_Exist_Tlaquepaque =14.625;
-var dv_Exist_lH =49.588;
-var dv_Exist_Vp =27.276;
-var dv_Exist_Cantamar =17.395;
-var dv_Exist_Mayoreo =0;
-var dv_Exist_Melaque  =36.8898;
-var articulo ="CLAVO C/C STD 2 1/2 KG";
-var existencias = parseFloat(dv_Exist_Fondeport)+
-parseFloat(dv_Exist_Tlaquepaque)+
-parseFloat(dv_Exist_lH)+
-parseFloat(dv_Exist_Vp)+
-parseFloat(dv_Exist_Cantamar)+
-parseFloat(dv_Exist_Mayoreo)+
-parseFloat(dv_Exist_Melaque);
-var almacen_masExistencias ="La Huerta";
-var prec =24.5;
-var Mejor_ubicacion ="Fondeport";
-
-                   $("#dv_Exist_Fondeport").text(dv_Exist_Fondeport);
- $("#dv_Exist_Tlaquepaque").text(dv_Exist_Tlaquepaque);
- $("#dv_Exist_lH").text(dv_Exist_lH);
- $("#dv_Exist_Vp").text(dv_Exist_Vp);
- $("#dv_Exist_Cantamar").text(dv_Exist_Cantamar);
- $("#dv_Exist_Mayoreo").text(dv_Exist_Mayoreo);
- $("#dv_Exist_Melaque").text(dv_Exist_Melaque);
-
-$("#articulo").text(articulo);
-$("#existencias").text(existencias);
-$("#almacen_masExistencias").text(almacen_masExistencias);
-$("#prec").text(prec);
-$("#Mejor_ubicacion").text(Mejor_ubicacion);
-const data = [
-    { id: dv_Exist_Fondeport, nombre: 'Fondeport', ubicacion: '' },
-    { id: dv_Exist_Tlaquepaque, nombre: 'Tlaquepaque', ubicacion: '' },
-    { id: dv_Exist_lH, nombre: 'La Huerta', ubicacion: '' },
-    { id: dv_Exist_Vp, nombre: 'Villa Purificación', ubicacion: '' },
-      { id: dv_Exist_Cantamar, nombre: 'Cantamar', ubicacion: '' },
-        { id: dv_Exist_Mayoreo, nombre: 'Mayoreo', ubicacion: '' },
-          { id: dv_Exist_Melaque, nombre: 'Melaque', ubicacion: '' }
-];
-
-
- const tbody = document.getElementById('cuerpo_tabla');
-    
-    // Limpiar el contenido existente
-    tbody.innerHTML = '';
-
-    // Agregar las nuevas filas
-    data.forEach(item => {
-        const tr = document.createElement('tr');
-        
-        // Crear y agregar celdas
-        const tdId = document.createElement('td');
-        tdId.textContent = item.id;
-        tr.appendChild(tdId);
-        
-        const tdNombre = document.createElement('td');
-        tdNombre.textContent = item.nombre;
-        tr.appendChild(tdNombre);
-        
-        const tdUbicacion = document.createElement('td');
-        tdUbicacion.textContent = item.ubicacion;
-        tr.appendChild(tdUbicacion);
-
-      
-        
-        // Agregar la fila al cuerpo de la tabla
-        tbody.appendChild(tr);
-    });
-    
-                } 
-
-
-
-                   else if (texto === "37421") {
-var dv_Exist_Fondeport =241;
-var dv_Exist_Tlaquepaque =20;
-var dv_Exist_lH =5;
-var dv_Exist_Vp =11;
-var dv_Exist_Cantamar =40;
-var dv_Exist_Mayoreo =10;
-var dv_Exist_Melaque  =34;
-var articulo ="SILICON DURETAN GRIS CARTUCHO 300 ML PENNSYLVANIA";
-var existencias = parseFloat(dv_Exist_Fondeport)+
-parseFloat(dv_Exist_Tlaquepaque)+
-parseFloat(dv_Exist_lH)+
-parseFloat(dv_Exist_Vp)+
-parseFloat(dv_Exist_Cantamar)+
-parseFloat(dv_Exist_Mayoreo)+
-parseFloat(dv_Exist_Melaque);
-var almacen_masExistencias ="Fondeport";
-var prec =93.79;
-var Mejor_ubicacion ="Fondeport";
-
-                   $("#dv_Exist_Fondeport").text(dv_Exist_Fondeport);
- $("#dv_Exist_Tlaquepaque").text(dv_Exist_Tlaquepaque);
- $("#dv_Exist_lH").text(dv_Exist_lH);
- $("#dv_Exist_Vp").text(dv_Exist_Vp);
- $("#dv_Exist_Cantamar").text(dv_Exist_Cantamar);
- $("#dv_Exist_Mayoreo").text(dv_Exist_Mayoreo);
- $("#dv_Exist_Melaque").text(dv_Exist_Melaque);
-
-$("#articulo").text(articulo);
-$("#existencias").text(existencias);
-$("#almacen_masExistencias").text(almacen_masExistencias);
-$("#prec").text(prec);
-$("#Mejor_ubicacion").text(Mejor_ubicacion);
-const data = [
-    { id: dv_Exist_Fondeport, nombre: 'Fondeport', ubicacion: '' },
-    { id: dv_Exist_Tlaquepaque, nombre: 'Tlaquepaque', ubicacion: '' },
-    { id: dv_Exist_lH, nombre: 'La Huerta', ubicacion: '' },
-    { id: dv_Exist_Vp, nombre: 'Villa Purificación', ubicacion: '' },
-      { id: dv_Exist_Cantamar, nombre: 'Cantamar', ubicacion: '' },
-        { id: dv_Exist_Mayoreo, nombre: 'Mayoreo', ubicacion: '' },
-          { id: dv_Exist_Melaque, nombre: 'Melaque', ubicacion: '' }
-];
-
-
- const tbody = document.getElementById('cuerpo_tabla');
-    
-    // Limpiar el contenido existente
-    tbody.innerHTML = '';
-
-    // Agregar las nuevas filas
-    data.forEach(item => {
-        const tr = document.createElement('tr');
-        
-        // Crear y agregar celdas
-        const tdId = document.createElement('td');
-        tdId.textContent = item.id;
-        tr.appendChild(tdId);
-        
-        const tdNombre = document.createElement('td');
-        tdNombre.textContent = item.nombre;
-        tr.appendChild(tdNombre);
-        
-        const tdUbicacion = document.createElement('td');
-        tdUbicacion.textContent = item.ubicacion;
-        tr.appendChild(tdUbicacion);
-
-      
-        
-        // Agregar la fila al cuerpo de la tabla
-        tbody.appendChild(tr);
-    });
-    
-                } 
-
-
-                    else if (texto === "38646") {
-var dv_Exist_Fondeport =27.74;
-var dv_Exist_Tlaquepaque =17.49;
-var dv_Exist_lH =0;
-var dv_Exist_Vp =0;
-var dv_Exist_Cantamar =0;
-var dv_Exist_Mayoreo =0;
-var dv_Exist_Melaque  =0;
-var articulo ="CUERDA POLIPROP CARRET 13MM SURTEK";
-var existencias = parseFloat(dv_Exist_Fondeport)+
-parseFloat(dv_Exist_Tlaquepaque)+
-parseFloat(dv_Exist_lH)+
-parseFloat(dv_Exist_Vp)+
-parseFloat(dv_Exist_Cantamar)+
-parseFloat(dv_Exist_Mayoreo)+
-parseFloat(dv_Exist_Melaque);
-var almacen_masExistencias ="Fondeport";
-var prec =65.95;
-var Mejor_ubicacion ="Fondeport";
-
-                   $("#dv_Exist_Fondeport").text(dv_Exist_Fondeport);
- $("#dv_Exist_Tlaquepaque").text(dv_Exist_Tlaquepaque);
- $("#dv_Exist_lH").text(dv_Exist_lH);
- $("#dv_Exist_Vp").text(dv_Exist_Vp);
- $("#dv_Exist_Cantamar").text(dv_Exist_Cantamar);
- $("#dv_Exist_Mayoreo").text(dv_Exist_Mayoreo);
- $("#dv_Exist_Melaque").text(dv_Exist_Melaque);
-
-$("#articulo").text(articulo);
-$("#existencias").text(existencias);
-$("#almacen_masExistencias").text(almacen_masExistencias);
-$("#prec").text(prec);
-$("#Mejor_ubicacion").text(Mejor_ubicacion);
-const data = [
-    { id: dv_Exist_Fondeport, nombre: 'Fondeport', ubicacion: '' },
-    { id: dv_Exist_Tlaquepaque, nombre: 'Tlaquepaque', ubicacion: '' },
-    { id: dv_Exist_lH, nombre: 'La Huerta', ubicacion: '' },
-    { id: dv_Exist_Vp, nombre: 'Villa Purificación', ubicacion: '' },
-      { id: dv_Exist_Cantamar, nombre: 'Cantamar', ubicacion: '' },
-        { id: dv_Exist_Mayoreo, nombre: 'Mayoreo', ubicacion: '' },
-          { id: dv_Exist_Melaque, nombre: 'Melaque', ubicacion: '' }
-];
-
-
- const tbody = document.getElementById('cuerpo_tabla');
-    
-    // Limpiar el contenido existente
-    tbody.innerHTML = '';
-
-    // Agregar las nuevas filas
-    data.forEach(item => {
-        const tr = document.createElement('tr');
-        
-        // Crear y agregar celdas
-        const tdId = document.createElement('td');
-        tdId.textContent = item.id;
-        tr.appendChild(tdId);
-        
-        const tdNombre = document.createElement('td');
-        tdNombre.textContent = item.nombre;
-        tr.appendChild(tdNombre);
-        
-        const tdUbicacion = document.createElement('td');
-        tdUbicacion.textContent = item.ubicacion;
-        tr.appendChild(tdUbicacion);
-
-      
-        
-        // Agregar la fila al cuerpo de la tabla
-        tbody.appendChild(tr);
-    });
-    
-                } 
-
-
-                    else if (texto === "660731382051") {
-var dv_Exist_Fondeport =27.74;
-var dv_Exist_Tlaquepaque =17.49;
-var dv_Exist_lH =0;
-var dv_Exist_Vp =0;
-var dv_Exist_Cantamar =0;
-var dv_Exist_Mayoreo =0;
-var dv_Exist_Melaque  =0;
-var articulo ="CUERDA POLIPROP CARRET 13MM SURTEK";
-var existencias = parseFloat(dv_Exist_Fondeport)+
-parseFloat(dv_Exist_Tlaquepaque)+
-parseFloat(dv_Exist_lH)+
-parseFloat(dv_Exist_Vp)+
-parseFloat(dv_Exist_Cantamar)+
-parseFloat(dv_Exist_Mayoreo)+
-parseFloat(dv_Exist_Melaque);
-var almacen_masExistencias ="Fondeport";
-var prec =65.95;
-var Mejor_ubicacion ="Fondeport";
-
-                   $("#dv_Exist_Fondeport").text(dv_Exist_Fondeport);
- $("#dv_Exist_Tlaquepaque").text(dv_Exist_Tlaquepaque);
- $("#dv_Exist_lH").text(dv_Exist_lH);
- $("#dv_Exist_Vp").text(dv_Exist_Vp);
- $("#dv_Exist_Cantamar").text(dv_Exist_Cantamar);
- $("#dv_Exist_Mayoreo").text(dv_Exist_Mayoreo);
- $("#dv_Exist_Melaque").text(dv_Exist_Melaque);
-
-$("#articulo").text(articulo);
-$("#existencias").text(existencias);
-$("#almacen_masExistencias").text(almacen_masExistencias);
-$("#prec").text(prec);
-$("#Mejor_ubicacion").text(Mejor_ubicacion);
-const data = [
-    { id: dv_Exist_Fondeport, nombre: 'Fondeport', ubicacion: '' },
-    { id: dv_Exist_Tlaquepaque, nombre: 'Tlaquepaque', ubicacion: '' },
-    { id: dv_Exist_lH, nombre: 'La Huerta', ubicacion: '' },
-    { id: dv_Exist_Vp, nombre: 'Villa Purificación', ubicacion: '' },
-      { id: dv_Exist_Cantamar, nombre: 'Cantamar', ubicacion: '' },
-        { id: dv_Exist_Mayoreo, nombre: 'Mayoreo', ubicacion: '' },
-          { id: dv_Exist_Melaque, nombre: 'Melaque', ubicacion: '' }
-];
-
-
- const tbody = document.getElementById('cuerpo_tabla');
-    
-    // Limpiar el contenido existente
-    tbody.innerHTML = '';
-
-    // Agregar las nuevas filas
-    data.forEach(item => {
-        const tr = document.createElement('tr');
-        
-        // Crear y agregar celdas
-        const tdId = document.createElement('td');
-        tdId.textContent = item.id;
-        tr.appendChild(tdId);
-        
-        const tdNombre = document.createElement('td');
-        tdNombre.textContent = item.nombre;
-        tr.appendChild(tdNombre);
-        
-        const tdUbicacion = document.createElement('td');
-        tdUbicacion.textContent = item.ubicacion;
-        tr.appendChild(tdUbicacion);
-
-      
-        
-        // Agregar la fila al cuerpo de la tabla
-        tbody.appendChild(tr);
-    });
-    
-                } 
-
-                //////////
-
-
-                 else if (texto === "12213") {
-var dv_Exist_Fondeport =76.48298;
-var dv_Exist_Tlaquepaque =119.5231;
-var dv_Exist_lH =16.146;
-var dv_Exist_Vp =0;
-var dv_Exist_Cantamar =0;
-var dv_Exist_Mayoreo =0;
-var dv_Exist_Melaque  =27.979;
-var articulo ="CEMENTO PORTLAND CPC 40 RS BIG-BAG CRUZ AZUL K";
-var existencias = parseFloat(dv_Exist_Fondeport)+
-parseFloat(dv_Exist_Tlaquepaque)+
-parseFloat(dv_Exist_lH)+
-parseFloat(dv_Exist_Vp)+
-parseFloat(dv_Exist_Cantamar)+
-parseFloat(dv_Exist_Mayoreo)+
-parseFloat(dv_Exist_Melaque);
-var almacen_masExistencias ="Tlaquepaque";
-var prec =3965.145;
-var Mejor_ubicacion ="Fondeport";
-
-                   $("#dv_Exist_Fondeport").text(dv_Exist_Fondeport);
- $("#dv_Exist_Tlaquepaque").text(dv_Exist_Tlaquepaque);
- $("#dv_Exist_lH").text(dv_Exist_lH);
- $("#dv_Exist_Vp").text(dv_Exist_Vp);
- $("#dv_Exist_Cantamar").text(dv_Exist_Cantamar);
- $("#dv_Exist_Mayoreo").text(dv_Exist_Mayoreo);
- $("#dv_Exist_Melaque").text(dv_Exist_Melaque);
-
-$("#articulo").text(articulo);
-$("#existencias").text(existencias);
-$("#almacen_masExistencias").text(almacen_masExistencias);
-$("#prec").text(prec);
-$("#Mejor_ubicacion").text(Mejor_ubicacion);
-const data = [
-    { id: dv_Exist_Fondeport, nombre: 'Fondeport', ubicacion: '' },
-    { id: dv_Exist_Tlaquepaque, nombre: 'Tlaquepaque', ubicacion: '' },
-    { id: dv_Exist_lH, nombre: 'La Huerta', ubicacion: '' },
-    { id: dv_Exist_Vp, nombre: 'Villa Purificación', ubicacion: '' },
-      { id: dv_Exist_Cantamar, nombre: 'Cantamar', ubicacion: '' },
-        { id: dv_Exist_Mayoreo, nombre: 'Mayoreo', ubicacion: '' },
-          { id: dv_Exist_Melaque, nombre: 'Melaque', ubicacion: '' }
-];
-
-
- const tbody = document.getElementById('cuerpo_tabla');
-    
-    // Limpiar el contenido existente
-    tbody.innerHTML = '';
-
-    // Agregar las nuevas filas
-    data.forEach(item => {
-        const tr = document.createElement('tr');
-        
-        // Crear y agregar celdas
-        const tdId = document.createElement('td');
-        tdId.textContent = item.id;
-        tr.appendChild(tdId);
-        
-        const tdNombre = document.createElement('td');
-        tdNombre.textContent = item.nombre;
-        tr.appendChild(tdNombre);
-        
-        const tdUbicacion = document.createElement('td');
-        tdUbicacion.textContent = item.ubicacion;
-        tr.appendChild(tdUbicacion);
-
-      
-        
-        // Agregar la fila al cuerpo de la tabla
-        tbody.appendChild(tr);
-    });
-    
-                } 
-
-                   else if (texto === "35877") {
-var dv_Exist_Fondeport =1031;
-var dv_Exist_Tlaquepaque =53;
-var dv_Exist_lH =42;
-var dv_Exist_Vp =67;
-var dv_Exist_Cantamar =3;
-var dv_Exist_Mayoreo =4598;
-var dv_Exist_Melaque  =38;
-var articulo ="CASTILLO DOBLADO 15-20-4 11/32 TIPO 3 TRAMO 6 MTS";
-var existencias = parseFloat(dv_Exist_Fondeport)+
-parseFloat(dv_Exist_Tlaquepaque)+
-parseFloat(dv_Exist_lH)+
-parseFloat(dv_Exist_Vp)+
-parseFloat(dv_Exist_Cantamar)+
-parseFloat(dv_Exist_Mayoreo)+
-parseFloat(dv_Exist_Melaque);
-var almacen_masExistencias ="Mayoreo";
-var prec =237.6;
-var Mejor_ubicacion ="Fondeport";
-
-                   $("#dv_Exist_Fondeport").text(dv_Exist_Fondeport);
- $("#dv_Exist_Tlaquepaque").text(dv_Exist_Tlaquepaque);
- $("#dv_Exist_lH").text(dv_Exist_lH);
- $("#dv_Exist_Vp").text(dv_Exist_Vp);
- $("#dv_Exist_Cantamar").text(dv_Exist_Cantamar);
- $("#dv_Exist_Mayoreo").text(dv_Exist_Mayoreo);
- $("#dv_Exist_Melaque").text(dv_Exist_Melaque);
-
-$("#articulo").text(articulo);
-$("#existencias").text(existencias);
-$("#almacen_masExistencias").text(almacen_masExistencias);
-$("#prec").text(prec);
-$("#Mejor_ubicacion").text(Mejor_ubicacion);
-const data = [
-    { id: dv_Exist_Fondeport, nombre: 'Fondeport', ubicacion: '' },
-    { id: dv_Exist_Tlaquepaque, nombre: 'Tlaquepaque', ubicacion: '' },
-    { id: dv_Exist_lH, nombre: 'La Huerta', ubicacion: '' },
-    { id: dv_Exist_Vp, nombre: 'Villa Purificación', ubicacion: '' },
-      { id: dv_Exist_Cantamar, nombre: 'Cantamar', ubicacion: '' },
-        { id: dv_Exist_Mayoreo, nombre: 'Mayoreo', ubicacion: '' },
-          { id: dv_Exist_Melaque, nombre: 'Melaque', ubicacion: '' }
-];
-
-
- const tbody = document.getElementById('cuerpo_tabla');
-    
-    // Limpiar el contenido existente
-    tbody.innerHTML = '';
-
-    // Agregar las nuevas filas
-    data.forEach(item => {
-        const tr = document.createElement('tr');
-        
-        // Crear y agregar celdas
-        const tdId = document.createElement('td');
-        tdId.textContent = item.id;
-        tr.appendChild(tdId);
-        
-        const tdNombre = document.createElement('td');
-        tdNombre.textContent = item.nombre;
-        tr.appendChild(tdNombre);
-        
-        const tdUbicacion = document.createElement('td');
-        tdUbicacion.textContent = item.ubicacion;
-        tr.appendChild(tdUbicacion);
-
-      
-        
-        // Agregar la fila al cuerpo de la tabla
-        tbody.appendChild(tr);
-    });
-    
-                } 
-
-
-
-
-                   else if (texto === "8312") {
-var dv_Exist_Fondeport =52;
-var dv_Exist_Tlaquepaque =0;
-var dv_Exist_lH =70;
-var dv_Exist_Vp =59;
-var dv_Exist_Cantamar =50;
-var dv_Exist_Mayoreo =306;
-var dv_Exist_Melaque  =100;
-var articulo ="TUBO GALV P/CICLON 2 CAL.18 TRAMO 6.00 MTS";
-var existencias = parseFloat(dv_Exist_Fondeport)+
-parseFloat(dv_Exist_Tlaquepaque)+
-parseFloat(dv_Exist_lH)+
-parseFloat(dv_Exist_Vp)+
-parseFloat(dv_Exist_Cantamar)+
-parseFloat(dv_Exist_Mayoreo)+
-parseFloat(dv_Exist_Melaque);
-var almacen_masExistencias ="Mayoreo";
-var prec =411.7;
-var Mejor_ubicacion ="Fondeport";
-
-                   $("#dv_Exist_Fondeport").text(dv_Exist_Fondeport);
- $("#dv_Exist_Tlaquepaque").text(dv_Exist_Tlaquepaque);
- $("#dv_Exist_lH").text(dv_Exist_lH);
- $("#dv_Exist_Vp").text(dv_Exist_Vp);
- $("#dv_Exist_Cantamar").text(dv_Exist_Cantamar);
- $("#dv_Exist_Mayoreo").text(dv_Exist_Mayoreo);
- $("#dv_Exist_Melaque").text(dv_Exist_Melaque);
-
-$("#articulo").text(articulo);
-$("#existencias").text(existencias);
-$("#almacen_masExistencias").text(almacen_masExistencias);
-$("#prec").text(prec);
-$("#Mejor_ubicacion").text(Mejor_ubicacion);
-const data = [
-    { id: dv_Exist_Fondeport, nombre: 'Fondeport', ubicacion: '' },
-    { id: dv_Exist_Tlaquepaque, nombre: 'Tlaquepaque', ubicacion: '' },
-    { id: dv_Exist_lH, nombre: 'La Huerta', ubicacion: '' },
-    { id: dv_Exist_Vp, nombre: 'Villa Purificación', ubicacion: '' },
-      { id: dv_Exist_Cantamar, nombre: 'Cantamar', ubicacion: '' },
-        { id: dv_Exist_Mayoreo, nombre: 'Mayoreo', ubicacion: '' },
-          { id: dv_Exist_Melaque, nombre: 'Melaque', ubicacion: '' }
-];
-
-
- const tbody = document.getElementById('cuerpo_tabla');
-    
-    // Limpiar el contenido existente
-    tbody.innerHTML = '';
-
-    // Agregar las nuevas filas
-    data.forEach(item => {
-        const tr = document.createElement('tr');
-        
-        // Crear y agregar celdas
-        const tdId = document.createElement('td');
-        tdId.textContent = item.id;
-        tr.appendChild(tdId);
-        
-        const tdNombre = document.createElement('td');
-        tdNombre.textContent = item.nombre;
-        tr.appendChild(tdNombre);
-        
-        const tdUbicacion = document.createElement('td');
-        tdUbicacion.textContent = item.ubicacion;
-        tr.appendChild(tdUbicacion);
-
-      
-        
-        // Agregar la fila al cuerpo de la tabla
-        tbody.appendChild(tr);
-    });
-    
-                } 
+    $('#clearButton').click(function() {
+                $('#cuerpo_tabla_precio').empty();
+                table.clear().draw();
             });
+            function truncateToDecimal(value, decimals) {
+    var factor = Math.pow(10, decimals);
+    return Math.floor(value * factor) / factor;
+}
+////////////////////////////////////
+function btnMinformacion_name(){
+				var precios="";
+                var validacion =$("#busquedas").val();	
+     console.log("validacion " + validacion)
+     if(validacion==1){
+        $('#cuerpo_tabla_precio').empty();
+     
+        document.getElementById('cuerpo_tabla_precio').innerHTML = '';
+     }
+		var articulo= $('#item_nombre_id').val();
+	
+				var arreglo=[];
+				var id =0;
+				$.get("reportes/reporte/tablaTransaccionesDiariasporVendedores.php",{articulo:articulo},
+				function(htmlexterno){
+                    console.log(htmlexterno);
+				var articulo=	htmlexterno[0][0].description ;
+				id = htmlexterno[0][0].id;
+                console.log(id);
+				$.get("reportes/reporte/tablatoplow.php",{id:id},
+				function(htmlexterno){
 
+					var data = JSON.parse(htmlexterno);
+
+// Extrae el array de precios del primer objeto
+ precios = data[0].precios;
+
+
+var precioMax = -Infinity;
+            var nombreMax = '';
+            var precioMin = Infinity;
+            var nombreMin = '';
+
+$.each(precios, function(index, item) {
+                var nombrePrecio = item.nombre_precio;
+                var valorPrecio =  parseFloat(item.precio)*parseFloat(0.16);
+                
+                var iva =  item.precio*0.16;
+                var moneda = item.moneda;
+
+                // Añade los datos al div
+
+"<p>Sucursal con el precio más alto: " + nombreMax + " con $" + precioMax.toFixed(2) + "</p>" +
+                "<p>Sucursal con el precio más bajo: " + nombreMin + " con $" + precioMin.toFixed(2) + "</p>"
+               
+
+        // Añade los datos al div solo si contiene "mostrador"
+   
+
+  
+				
+				if (valorPrecio > precioMax) {
+                    precioMax = valorPrecio;
+                    nombreMax = nombrePrecio;
+                }
+                if (valorPrecio < precioMin) {
+                    precioMin = valorPrecio;
+                    nombreMin = nombrePrecio;
+                }
+             
+           
+
+            });
+           
+		// Inicializa el DataTable
+
+// Inicializa DataTables
+if ($.fn.DataTable.isDataTable('#resultsTable')) {
+    // Si la tabla ya está inicializada, destrúyela
+    $('#resultsTable').DataTable().destroy();
+}
+var table = $('#resultsTable').DataTable({
+    data: precios,
+    columns: [
+        { data: 'nombre_precio', title: 'Ubicación' },
+        { 
+            data: 'precio', 
+            title: 'Precio', 
+            render: function(data, type, row) {
+                // Supongamos que el IVA es del 21%
+                var iva = 0.16;
+                var precioConIva = (data*iva )+ (data);
+                var precioTruncado = truncateToDecimal(precioConIva, 2);
+                // Formateo manual del número con separador de miles y dos decimales
+                return '$' + precioTruncado.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            },
+            type: 'num'  // Asegúrate de que DataTables interpreta los valores como números
+        }
+    ],
+    dom: 'Bfrtip',
+    buttons: [
+        'excel'
+    ],
+    order: [[1, 'asc']],  // Ordenar por la segunda columna (índice 1) por defecto, en orden ascendente
+    pageLength: 50,  // Establece el número de filas por página en 10
+    paging: true  // Asegúrate de que la paginación está habilitada
+});
+
+// Función de filtrado personalizada
+$.fn.dataTable.ext.search.push(
+    function(settings, data, dataIndex) {
+        // `data[0]` es el contenido de la columna 'Ubicación' (según el índice de la columna)
+        var ubicacion = data[0].toLowerCase(); 
+        
+        // Filtra los registros que contengan alguna de las palabras "mostrador", "mayoreo" o "construcción"
+        return ubicacion.includes('mostrador') || 
+               ubicacion.includes('mayoreo') || 
+               ubicacion.includes('construcción');
+    }
+);
+
+// Aplica el filtrado
+table.draw();
+
+$("#busquedas").val(1);	  
+		
+			
+		
+					});
+				$("#articulo").html(articulo);
+				var total_de_inv = 0;
+				var maxInv = -Infinity;
+				var sucursalConMaxInv = '';
+for (var i = 0; i < htmlexterno.length; i++) {
+    // Iterar sobre los subarreglos
+	var description="";
+    document.getElementById('cuerpo_tabla').innerHTML = '';
+	var inv =0;
+	var sucursal ="";
+    for (var j = 0; j < htmlexterno[i].length; j++) {
+         description = htmlexterno[i][j].description;
+   
+        
+        
+     
+        
+         inv = htmlexterno[i][j].inv;
+      
+        
+         sucursal = htmlexterno[i][j].sucursal;
+
+        
+
+		
+        // Sumar el valor de 'inv' a 'total_de_inv'
+        total_de_inv += inv;
+		if (inv > maxInv) {
+            maxInv = inv;
+            sucursalConMaxInv = sucursal;
+        }
+		$("#cuerpo_tabla").append("<tr><td>"+sucursal+"</td><td>"+inv+"</td></tr>");	
+       
+    }
+	
+}
+
+$("#existencias").html(total_de_inv);
+
+$("#almacen_masExistencias").html(sucursalConMaxInv +" con " +  maxInv);
+
+
+				});
+				
+		// Obtener todas las filas del cuerpo de la tabla
+// Selecciona el nodo objetivo (el cuerpo de la tabla)
+// Selecciona el nodo objetivo (el cuerpo de la tabla)
+const targetNode = document.getElementById('cuerpo_tabla_precio');
+
+// Configura el observer para observar los cambios en el hijo del nodo
+const config = { childList: true, subtree: true };
+
+// Crea una función callback para manejar los cambios
+const callback = (mutationsList) => {
+    // Recorrer cada mutación
+    for (const mutation of mutationsList) {
+        if (mutation.type === 'childList') {
+            // Una vez que se detecta un cambio, ejecutar la función para encontrar los precios máximo y mínimo
+            findMinMaxPrices();
+        }
+    }
+};
+
+// Crea una instancia de MutationObserver y pasa el callback
+const observer = new MutationObserver(callback);
+
+// Comienza a observar el objetivo con la configuración
+observer.observe(targetNode, config);
+
+// Función para encontrar y mostrar el precio máximo y mínimo
+
+
+// Llamar a la función una vez al principio si la tabla ya está llena
+findMinMaxPrices();
+
+
+			
+		}
+////////////////////////////////////
+
+    const inputElement = document.getElementById('item_nombre');
+
+// Agrega un escuchador para el evento 'input'
+inputElement.addEventListener('input', function(event) {
+    // Obtén el valor actual del campo de entrada
+    const currentValue = event.target.value;
+    
+    // Verifica si el valor no está vacío
+    if (currentValue.trim() !== '') {
+        // Ejecuta la acción deseada con el valor actual
+
+
+        
+        var art=currentValue.toUpperCase();
+        console.log('El valor actual del input es:', art);
+        $.get("reportes/reporte/consulta_bsArt.php",{art:art},
+        function(htmlexterno){
+            for (var i = 0; i < htmlexterno.length; i++) {
+    // Iterar sobre los subarreglos
+	var description="";
+
+	var inv =0;
+	var sucursal ="";
+    $('#ol_nombre').empty();
+    for (var j = 0; j < htmlexterno[i].length; j++) {
+
+
+        
+        var id=	htmlexterno[i][j].displayname ;
+            var itemid=	htmlexterno[i][j].itemid ;
+           
+            $("#ol_nombre").append("<li><a class='dato_nm' data-id='" + id + "' data-itemid='" + itemid + "'>" + itemid + "</a></li>");
+
+    }
+    }
             
         });
-    </script>
+     
+    // Si el valor está vacío, no hagas nada o puedes manejar el caso aquí si es necesario
+
+    }
+});
+
+$(document).on('click', '.dato_nm', function(event) {
+    // Previene la acción por defecto del enlace (si es necesario)
+    event.preventDefault();
+
+    // Obtiene los valores de los atributos data
+    var idValue = $(this).data('id');
+    var itemIdValue = $(this).data('itemid');
+
+    $("#item_nombre").val(itemIdValue);
+    $("#item_nombre_id").val(idValue);
+    // Asigna los valores a los campos de entrada
+    console.log(idValue);
+    console.log(itemIdValue);
+    $('#ol_nombre').empty();
+
+});
+			function btnMinformacion(){
+				var precios="";
+                var validacion =$("#busquedas").val();	
+     console.log("validacion " + validacion)
+     if(validacion==1){
+        $('#cuerpo_tabla_precio').empty();
+     
+        document.getElementById('cuerpo_tabla_precio').innerHTML = '';
+     }
+		var articulo= $('#item').val();
+	
+				var arreglo=[];
+				var id =0;
+				$.get("reportes/reporte/tablaTransaccionesDiariasporVendedores.php",{articulo:articulo},
+				function(htmlexterno){
+				var articulo=	htmlexterno[0][0].description ;
+				id = htmlexterno[0][0].id;
+                console.log(id);
+				$.get("reportes/reporte/tablatoplow.php",{id:id},
+				function(htmlexterno){
+
+					var data = JSON.parse(htmlexterno);
+
+// Extrae el array de precios del primer objeto
+ precios = data[0].precios;
+
+
+var precioMax = -Infinity;
+            var nombreMax = '';
+            var precioMin = Infinity;
+            var nombreMin = '';
+
+$.each(precios, function(index, item) {
+                var nombrePrecio = item.nombre_precio;
+                var valorPrecio =  parseFloat(item.precio)*parseFloat(0.16);
+                
+                var iva =  item.precio*0.16;
+                var moneda = item.moneda;
+
+                // Añade los datos al div
+
+"<p>Sucursal con el precio más alto: " + nombreMax + " con $" + precioMax.toFixed(2) + "</p>" +
+                "<p>Sucursal con el precio más bajo: " + nombreMin + " con $" + precioMin.toFixed(2) + "</p>"
+               
+
+        // Añade los datos al div solo si contiene "mostrador"
+   
+
+  
+				
+				if (valorPrecio > precioMax) {
+                    precioMax = valorPrecio;
+                    nombreMax = nombrePrecio;
+                }
+                if (valorPrecio < precioMin) {
+                    precioMin = valorPrecio;
+                    nombreMin = nombrePrecio;
+                }
+             
+           
+
+            });
+           
+		// Inicializa el DataTable
+
+// Inicializa DataTables
+if ($.fn.DataTable.isDataTable('#resultsTable')) {
+    // Si la tabla ya está inicializada, destrúyela
+    $('#resultsTable').DataTable().destroy();
+}
+var table = $('#resultsTable').DataTable({
+    data: precios,
+    columns: [
+        { data: 'nombre_precio', title: 'Ubicación' },
+        { 
+            data: 'precio', 
+            title: 'Precio', 
+            render: function(data, type, row) {
+                // Supongamos que el IVA es del 21%
+                var iva = 0.16;
+                var precioConIva = (data*iva )+ (data);
+                var precioTruncado = truncateToDecimal(precioConIva, 2);
+                // Formateo manual del número con separador de miles y dos decimales
+                return '$' + precioTruncado.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            },
+            type: 'num'  // Asegúrate de que DataTables interpreta los valores como números
+        }
+    ],
+    dom: 'Bfrtip',
+    buttons: [
+        'excel'
+    ],
+    order: [[1, 'asc']],  // Ordenar por la segunda columna (índice 1) por defecto, en orden ascendente
+    pageLength: 50,  // Establece el número de filas por página en 10
+    paging: true  // Asegúrate de que la paginación está habilitada
+});
+
+// Función de filtrado personalizada
+$.fn.dataTable.ext.search.push(
+    function(settings, data, dataIndex) {
+        // `data[0]` es el contenido de la columna 'Ubicación' (según el índice de la columna)
+        var ubicacion = data[0].toLowerCase(); 
+        
+        // Filtra los registros que contengan alguna de las palabras "mostrador", "mayoreo" o "construcción"
+        return ubicacion.includes('mostrador') || 
+               ubicacion.includes('mayoreo') || 
+               ubicacion.includes('construcción');
+    }
+);
+
+// Aplica el filtrado
+table.draw();
+
+$("#busquedas").val(1);	  
+		
+			
+		
+					});
+				$("#articulo").html(articulo);
+				var total_de_inv = 0;
+				var maxInv = -Infinity;
+				var sucursalConMaxInv = '';
+for (var i = 0; i < htmlexterno.length; i++) {
+    // Iterar sobre los subarreglos
+	var description="";
+    document.getElementById('cuerpo_tabla').innerHTML = '';
+	var inv =0;
+	var sucursal ="";
+    for (var j = 0; j < htmlexterno[i].length; j++) {
+         description = htmlexterno[i][j].description;
+   
+        
+        
+     
+        
+         inv = htmlexterno[i][j].inv;
+      
+        
+         sucursal = htmlexterno[i][j].sucursal;
+
+        
+
+		
+        // Sumar el valor de 'inv' a 'total_de_inv'
+        total_de_inv += inv;
+		if (inv > maxInv) {
+            maxInv = inv;
+            sucursalConMaxInv = sucursal;
+        }
+		$("#cuerpo_tabla").append("<tr><td>"+sucursal+"</td><td>"+inv+"</td></tr>");	
+       
+    }
+	
+}
+
+$("#existencias").html(total_de_inv);
+
+$("#almacen_masExistencias").html(sucursalConMaxInv +" con " +  maxInv);
+
+
+				});
+				
+		// Obtener todas las filas del cuerpo de la tabla
+// Selecciona el nodo objetivo (el cuerpo de la tabla)
+// Selecciona el nodo objetivo (el cuerpo de la tabla)
+const targetNode = document.getElementById('cuerpo_tabla_precio');
+
+// Configura el observer para observar los cambios en el hijo del nodo
+const config = { childList: true, subtree: true };
+
+// Crea una función callback para manejar los cambios
+const callback = (mutationsList) => {
+    // Recorrer cada mutación
+    for (const mutation of mutationsList) {
+        if (mutation.type === 'childList') {
+            // Una vez que se detecta un cambio, ejecutar la función para encontrar los precios máximo y mínimo
+            findMinMaxPrices();
+        }
+    }
+};
+
+// Crea una instancia de MutationObserver y pasa el callback
+const observer = new MutationObserver(callback);
+
+// Comienza a observar el objetivo con la configuración
+observer.observe(targetNode, config);
+
+// Función para encontrar y mostrar el precio máximo y mínimo
+
+
+// Llamar a la función una vez al principio si la tabla ya está llena
+findMinMaxPrices();
+
+
+			
+		}
+        // Función para encontrar y mostrar el precio máximo
+// Función para encontrar y mostrar el precio máximo y mínimo
+function findMinMaxPrices() {
+    // Obtener todas las filas del cuerpo de la tabla
+    const rows = document.querySelectorAll('#cuerpo_tabla_precio tr');
+
+    // Inicializar variables para el seguimiento del precio máximo y mínimo
+    let maxPrice = -Infinity;
+    let minPrice = Infinity;
+    let maxLocations = [];
+    let minLocations = [];
+
+    // Recorrer cada fila
+    rows.forEach(row => {
+        // Obtener el precio de la fila actual
+        const priceText = row.cells[1].textContent.trim();
+        const price = parseFloat(priceText.replace('$', '').replace(',', ''));
+
+        // Obtener la ubicación de la fila actual
+        const location = row.cells[0].textContent.trim();
+
+        // Comprobar si el precio actual es mayor que el precio máximo encontrado
+        if (price > maxPrice) {
+            maxPrice = price;
+            maxLocations = [location];
+        } else if (price === maxPrice) {
+            maxLocations.push(location);
+        }
+
+        // Comprobar si el precio actual es menor que el precio mínimo encontrado
+        if (price < minPrice) {
+            minPrice = price;
+            minLocations = [location];
+        } else if (price === minPrice) {
+            minLocations.push(location);
+        }
+    });
+
+    // Mostrar los resultados
+    console.log('Precio máximo:', `$${maxPrice.toFixed(2)}`);
+    console.log('Ubicaciones con el precio máximo:', maxLocations.join(', '));
+    console.log('Precio mínimo:', `$${minPrice.toFixed(2)}`);
+    console.log('Ubicaciones con el precio mínimo:', minLocations.join(', '));
+
+    $("#prec_alt").html(maxLocations +" con " +  maxPrice.toFixed(2));
+    $("#prec_bajo").html(minLocations +" con " +  minPrice.toFixed(2));
+}
+
+// Configura un intervalo para verificar la tabla cada 500 milisegundos
+const checkInterval = setInterval(() => {
+    const rows = document.querySelectorAll('#cuerpo_tabla_precio tr');
+    if (rows.length > 0) {
+        findMinMaxPrices();
+        clearInterval(checkInterval); // Detener el intervalo una vez que se haya llenado la tabla
+    }
+}, 500);
+
+
+
+
+ 
+
+document.getElementById('start-button').addEventListener('click', function() {
+
+});
+
+
+    // Manejo del clic en el botón de cerrar modal
+    $('.close').click(function() {
+        $('#modal').hide();
+        codeReader.reset(); // Detener el escaneo cuando se cierra el modal
+    });
+
+ </script>
 
 </body>
+
+</html>
+<?php 
+	}else{
+		header("location:../index.php");
+	}
+ ?>
+
+
+
